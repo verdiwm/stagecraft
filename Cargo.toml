@@ -1,0 +1,13 @@
+[package]
+name = "stagecraft"
+version = "0.0.1"
+edition = "2024"
+license = "Apache-2.0"
+authors = ["Matilde Morrone <contact@morrone.dev>"]
+repository = "https://github.com/verdiwm/stagecraft"
+description = "Actor framework"
+documentation = "https://docs.rs/stagecraft"
+include = ["src/**/*.rs", "README.md", "LICENSE"]
+
+
+[dependencies]
