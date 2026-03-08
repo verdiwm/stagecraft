@@ -1,9 +1,16 @@
 [package]
 name = "stagecraft-macros"
-version = "0.0.1"
+version = "0.1.0"
 edition = "2024"
 license = "Apache-2.0"
-authors = ["Matilde Morrone <contact@morrone.dev>"]
+authors = ["Matilde Morrone <contact@matilde.pet>"]
+repository = "https://github.com/verdiwm/stagecraft"
+description = "Macros for stagecraft"
+documentation = "https://docs.rs/stagecraft-macros"
+readme = "../README.md"
+keywords = ["actor", "tokio", "async", "framework", "macros"]
+categories = ["asynchronous", "concurrency"]
+include = ["src/**/*.rs", "../README.md", "../LICENSE"]
 
 [lib]
 proc-macro = true

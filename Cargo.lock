@@ -88,7 +88,7 @@ checksum = "0c790de23124f9ab44544d7ac05d60440adc586479ce501c1d6d7da3cd8c9cf5"
 
 [[package]]
 name = "stagecraft"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "futures-core",
  "stagecraft-macros",
@@ -99,7 +99,7 @@ dependencies = [
 
 [[package]]
 name = "stagecraft-macros"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "heck",
  "proc-macro2",

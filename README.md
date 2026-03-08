@@ -1,4 +1,4 @@
-# stagecraft
+# Stagecraft
 
 A minimal Tokio-based actor framework.
 

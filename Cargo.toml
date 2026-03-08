@@ -4,10 +4,10 @@ resolver = "2"
 
 [package]
 name = "stagecraft"
-version = "0.0.1"
+version = "0.1.0"
 edition = "2024"
 license = "Apache-2.0"
-authors = ["Matilde Morrone <contact@morrone.dev>"]
+authors = ["Matilde Morrone <contact@matilde.pet>"]
 repository = "https://github.com/verdiwm/stagecraft"
 description = "An actor framework for tokio"
 documentation = "https://docs.rs/stagecraft"
@@ -18,7 +18,7 @@ include = ["src/**/*.rs", "examples/**/*.rs", "README.md", "LICENSE"]
 
 
 [dependencies]
-stagecraft-macros = { version = "0.0.1", path = "macros" }
+stagecraft-macros = { version = "0.1.0", path = "macros" }
 futures-core = "0.3.32"
 tokio = { version = "1.50.0", features = ["macros"] }
 tokio-stream = "0.1.18"
