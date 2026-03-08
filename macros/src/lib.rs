@@ -1,3 +1,8 @@
+#![deny(missing_docs)]
+//! Proc-macro crate for stagecraft. Use via the re-exported [`stagecraft::message`] attribute.
+//!
+//! [`stagecraft::message`]: https://docs.rs/stagecraft/latest/stagecraft/attr.message.html
+
 use heck::ToSnakeCase;
 use proc_macro::TokenStream;
 use proc_macro2::TokenStream as TokenStream2;
@@ -30,6 +35,43 @@ fn parse_call_attr(attr: &syn::Attribute) -> syn::Result<Option<Type>> {
     }
 }
 
+/// Derive actor message convenience methods on a [`Handle`].
+///
+/// Applied to a message enum, this attribute generates an extension trait `{Actor}Ext`
+/// and implements it for `Handle<Actor>`, giving each enum variant a corresponding async method.
+///
+/// # Variant Attributes
+///
+/// - *(none)* — variant sent with [`Handle::cast`] (fire-and-forget); method returns `Result<(), ActorDead<()>>`.
+/// - `#[call]` — variant uses [`Handle::call`]; method returns `Result<(), ActorDead<()>>`.
+/// - `#[call(ReturnType)]` — variant uses [`Handle::call`]; method returns `Result<ReturnType, ActorDead<()>>`.
+///
+/// For `#[call]` variants the macro appends a `respond_to: oneshot::Sender<ReturnType>`
+/// field to the variant. The actor must send a value through it.
+///
+/// # Example
+///
+/// ```rust,ignore
+/// struct MyActor;
+///
+/// #[stagecraft::message(MyActor)]
+/// pub enum MyActorMessage {
+///     Log { text: String },   // cast: fire-and-forget
+///     #[call(u64)]
+///     Count,                   // call: returns u64
+/// }
+///
+/// // The macro generates:
+/// // pub trait MyActorExt {
+/// //     async fn log(&self, text: String) -> Result<(), ActorDead<()>>;
+/// //     async fn count(&self) -> Result<u64, ActorDead<()>>;
+/// // }
+/// // impl MyActorExt for Handle<MyActor> { ... }
+/// ```
+///
+/// [`Handle`]: stagecraft::Handle
+/// [`Handle::cast`]: stagecraft::Handle::cast
+/// [`Handle::call`]: stagecraft::Handle::call
 #[proc_macro_attribute]
 pub fn message(attr: TokenStream, item: TokenStream) -> TokenStream {
     message_impl(attr, item)

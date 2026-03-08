@@ -9,9 +9,12 @@ edition = "2024"
 license = "Apache-2.0"
 authors = ["Matilde Morrone <contact@morrone.dev>"]
 repository = "https://github.com/verdiwm/stagecraft"
-description = "Actor framework"
+description = "An actor framework for tokio"
 documentation = "https://docs.rs/stagecraft"
-include = ["src/**/*.rs", "README.md", "LICENSE"]
+readme = "README.md"
+keywords = ["actor", "tokio", "async", "framework"]
+categories = ["asynchronous", "concurrency"]
+include = ["src/**/*.rs", "examples/**/*.rs", "README.md", "LICENSE"]
 
 
 [dependencies]
@@ -20,3 +23,6 @@ futures-core = "0.3.32"
 tokio = { version = "1.50.0", features = ["macros"] }
 tokio-stream = "0.1.18"
 tokio-util = { version = "0.7.18", features = ["rt"] }
+
+[dev-dependencies]
+tokio = { version = "1.50.0", features = ["macros", "rt-multi-thread"] }
