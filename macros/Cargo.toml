@@ -1,0 +1,15 @@
+[package]
+name = "stagecraft-macros"
+version = "0.0.1"
+edition = "2024"
+license = "Apache-2.0"
+authors = ["Matilde Morrone <contact@morrone.dev>"]
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = { version = "2", features = ["full"] }
+quote = "1"
+proc-macro2 = "1"
+heck = "0.5"
