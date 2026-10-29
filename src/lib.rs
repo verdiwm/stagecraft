@@ -24,7 +24,7 @@ mod handle;
 mod mailbox;
 
 pub use actor::{Actor, LocalActor, LocalStreamActor, StreamActor};
-pub use context::{Context, spawn};
+pub use context::{Context, spawn, spawn_stream};
 pub use handle::{ActorDead, Handle};
 pub use mailbox::HasMailbox;
 pub use stagecraft_macros::message;

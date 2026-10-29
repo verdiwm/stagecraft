@@ -161,6 +161,22 @@ fn spawn_internal<A: Actor>(
     handle
 }
 
+/// Spawn a root [`StreamActor`] onto the current Tokio runtime.
+///
+/// Creates a fresh [`TaskTracker`]. Use this for the first actor in a program;
+/// child actors should be spawned via [`Context::spawn_stream`] so they share the parent's tracker.
+///
+/// # Panics
+///
+/// Panics if called outside a Tokio runtime context.
+///
+/// [`TaskTracker`]: tokio_util::task::TaskTracker
+pub fn spawn_stream<A: StreamActor>(token: CancellationToken, init: A::Init) -> Handle<A> {
+    let tracker = TaskTracker::new();
+
+    spawn_stream_internal::<A>(init, token, &tracker, RuntimeHandle::current())
+}
+
 pub(crate) fn spawn_stream_internal<A: StreamActor>(
     init: A::Init,
     token: CancellationToken,
