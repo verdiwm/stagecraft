@@ -130,7 +130,8 @@ fn spawn_internal<A: Actor>(
     let mut ctx = Context {
         handle: handle.clone(),
         token,
-        tracker: tracker.clone(),
+        // the "parent" tracker still waits for all the tasks tracked by this to complete
+        tracker: TaskTracker::new(),
         original_runtime,
     };
 
@@ -172,7 +173,8 @@ pub(crate) fn spawn_stream_internal<A: StreamActor>(
     let mut ctx = Context {
         handle: handle.clone(),
         token,
-        tracker: tracker.clone(),
+        // the "parent" tracker still waits for all the tasks tracked by this to complete
+        tracker: TaskTracker::new(),
         original_runtime,
     };
 
